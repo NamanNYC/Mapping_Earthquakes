@@ -18,14 +18,14 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark
 // Create a base layer that holds both maps.
 let baseMaps = {
   "Streets": streets,
-  "Satellite Streets": dark
+  "Satellite Streets": satelliteStreets
 };
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
   center: [43.7, -79.3],
   zoom: 11,
-  layers: [light]
+  layers: [streets]
 });
 
 // Pass our map layers into our layer control and add the layer control to the map
@@ -40,14 +40,17 @@ let torontoData = "https://raw.githubusercontent.com/NamanNYC/Mapping_Earthquake
 // Accessing the airport GeoJSON URL
 let airportData = "https://raw.githubusercontent.com/NamanNYC/Mapping_Earthquakes/Mapping_GeoJSON_Points/majorAirports.json";
 
+// Accessing the Toronto neighborhoods GeoJSON URL.
+let torontoHoods = "https://raw.githubusercontent.com/NamanNYC/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json";
+
 // Create a style for the lines.
 let myStyle = {
   color: "#ffffa1",
-  weight: 2
+  weight: 1
 }
 
 // Grabbing our GeoJSON data.
-d3.json(torontoData).then(function(data) {
+d3.json(torontoHoods).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
 L.geoJson(data, {
