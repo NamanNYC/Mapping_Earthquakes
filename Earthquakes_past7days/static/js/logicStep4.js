@@ -30,12 +30,12 @@ let overlays = {
   Earthquakes: earthquakes
 };
 
-// // Create the map object with center, zoom level and default layer.
-// let map = L.map('mapid', {
-//   center: [39.5, -98.5],
-//   zoom: 3,
-//   layers: [streets]
-// });
+// Create the map object with center, zoom level and default layer.
+let map = L.map('mapid', {
+  center: [39.5, -98.5],
+  zoom: 3,
+  layers: [streets]
+});
 
 // Then we add a control to the map that will allow the user to change which layers are visible.
 L.control.layers(baseMaps, overlays).addTo(map);
@@ -113,7 +113,10 @@ L.geoJson(data, {
       onEachFeature: function(feature, layer) {
         layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
       }
-      }).addTo(map);
+    }).addTo(earthquakes);
+
+      //Then we add the earthquake layer to our map
+      earthquakes.addTo(map);
   });
 
 // // Grabbing our GeoJSON data.
